@@ -3,7 +3,5 @@
     <node pkg = "turtlesim" name = "turtlesim_node" type = "turtlesim_node" />
     <node pkg = "my_turtlesim_controller" name = "my_turtlesim_controller" type = "my_turtlesim_controller" output = "screen">
         <param name="hz" value = "20" />
-        <param name="terminal_vel_z" value = "0.1" />
-        <param name="goal" value= "0.5" />
     </node>
 </launch>

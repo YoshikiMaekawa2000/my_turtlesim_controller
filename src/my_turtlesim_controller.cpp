@@ -3,8 +3,6 @@
 MyTurtlesimController::MyTurtlesimController():private_nh("~")
 {
     private_nh.param("hz",hz,{10});
-    private_nh.param("goal",goal,{1});
-    private_nh.param("terminal_vel_z",terminal_vel_z,{0.2});
     sub_pose = nh.subscribe("/turtle1/pose",10,&MyTurtlesimController::pose_callback,this);
     pub_cmd_vel = nh.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel",1);
 }
@@ -18,7 +16,14 @@ void MyTurtlesimController::pose_callback(const turtlesim::Pose::ConstPtr &msg)
 
 void MyTurtlesimController::go_straight()
 {
+    // ROS_INFO_STREAM(current_pose.x);
+    ROS_INFO_STREAM(current_pose.theta);
 
+    geometry_msgs::Twist cmd_vel;
+    // cmd_vel.linear.x = 1.0;
+    cmd_vel.linear.y = 0;
+    cmd_vel.angular.z = 0.1;
+    pub_cmd_vel.publish(cmd_vel);
 }
 
 
